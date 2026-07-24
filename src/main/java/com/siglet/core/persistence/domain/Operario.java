@@ -1,17 +1,29 @@
 package com.siglet.core.persistence.domain;
 
-import com.siglet.core.persistence.enumeration.EstadoMaquina;
+import com.siglet.core.persistence.enumeration.EstadoOperario;
 
 public class Operario {
+    //Atributos
     private String dNI;
     private String nombre;
     private String apellido;
+    private EstadoOperario estadoOperario;
 
-    public void cambiarEstado(EstadoMaquina nuevoEstado){
+    //Constructor
+    public Operario(String dNI, String nombre, String apellido){
+        this.dNI = dNI;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.estadoOperario = EstadoOperario.DISPONIBLE;
+    }
+
+
+    public void cambiarEstado(EstadoOperario nuevoEstado){
+        this.estadoOperario = nuevoEstado;
 
     }
 
     public boolean estaDisponible(){
-        return false;
+        return EstadoOperario.DISPONIBLE.equals(this.estadoOperario);
     }
 }

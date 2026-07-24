@@ -1,5 +1,9 @@
 package com.siglet.core.persistence.domain;
 
+import com.siglet.core.persistence.enumeration.EstadoOperario;
+import com.siglet.core.persistence.enumeration.PrioridadLote;
+
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -8,9 +12,14 @@ public class Lote {
     private int cantidad;
     private LocalDateTime inicioProceso;
     private LocalDateTime finProceso;
+    private PrioridadLote prioridadLote;
+    private MaquinaEtiquetado maquinaEtiquetado;
 
     // constructor
-
+    public Lote(String codigo, int cantidad){
+        this.codigo = codigo;
+        this.cantidad = cantidad;
+    }
 
     // Metodos
     public void iniciarProceso() {
@@ -18,26 +27,28 @@ public class Lote {
     }
 
     public void finalizarProceso() {
-
+        this.finProceso = LocalDateTime.now();
     }
 
-    public void elevarPrioridadUrgente(){
-
-    }
-
-    public void elevarPrioridadNormal(){
+    public void cambiarPrioridad(PrioridadLote prioridadLote){
+        this.prioridadLote = prioridadLote;
 
     }
 
     public boolean esUrgente() {
-        return true;
+        return PrioridadLote.URGENTE.equals(this.prioridadLote);
     }
 
-    public LocalTime calcularTiempoTotal() {
-        return LocalTime.now();
+    // Diferencia de tiempo fin e inicio
+    public Duration calcularTiempoTotal() {
+
+        Duration duracion = Duration.between(this.inicioProceso, this.finProceso);
+
+        return duracion;
     }
 
     public void setMaquina(MaquinaEtiquetado maquina) {
+        this.maquinaEtiquetado = maquina;
     }
 
 

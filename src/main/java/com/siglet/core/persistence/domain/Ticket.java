@@ -6,7 +6,9 @@ public class Ticket {
     private String codigo;
 
     // constructor
-
+    public Ticket() {
+        this.codigo = "A-";
+    }
 
     // metodos
     public List<Ticket> buscarPorLoteCodigo(String codigolote){
