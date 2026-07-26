@@ -20,28 +20,17 @@ public class Ticket {
         return "A-" + String.format("%05d", this.codigo);
     }
 
-    public Lote getLote() {
+    public Lote getCodigoLote() {
         return lote;
-    }
-
-    public void setLote(Lote lote) {
-        this.lote = lote;
     }
 
     public Operario getOperario() {
         return operario;
     }
 
-    public void setOperario(Operario operario) {
-        this.operario = operario;
-    }
-
     public MaquinaEtiquetado getMaquinaEtiquetado() {
         return maquinaEtiquetado;
     }
 
-    public void setMaquinaEtiquetado(MaquinaEtiquetado maquinaEtiquetado) {
-        this.maquinaEtiquetado = maquinaEtiquetado;
-    }
 }
 

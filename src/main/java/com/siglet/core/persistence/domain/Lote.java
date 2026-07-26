@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Lote {
-    private String codigo;
+    private int codigo;
     private int cantidad;
     private LocalDateTime inicioProceso;
     private LocalDateTime finProceso;
@@ -16,7 +16,7 @@ public class Lote {
     private MaquinaEtiquetado maquinaEtiquetado;
 
     // constructor
-    public Lote(String codigo, int cantidad){
+    public Lote(int codigo, int cantidad){
         this.codigo = codigo;
         this.cantidad = cantidad;
     }
@@ -51,7 +51,9 @@ public class Lote {
         this.maquinaEtiquetado = maquina;
     }
 
-
+    public int getCodigo() {
+        return codigo;
+    }
 }
 
 
