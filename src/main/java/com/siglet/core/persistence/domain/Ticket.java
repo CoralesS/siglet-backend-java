@@ -22,8 +22,8 @@ public class Ticket {
     }
 
     // metodos
-    public String getCodigo() {
-        return "A-" + String.format("%05d", this.codigo);
+    public int getCodigo() {
+        return this.codigo;
     }
 
     public Lote getLote() {
