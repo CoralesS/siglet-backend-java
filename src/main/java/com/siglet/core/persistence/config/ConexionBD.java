@@ -18,7 +18,7 @@ public class ConexionBD {
     // Metodo para realizar la ocnexion a la BD
     public static Connection getConnexion() {
         try {
-            if (conexion == null || conexion.isClosed()) {
+            if (conexion == null) {
                 conexion = DriverManager.getConnection(URL, USER, PASSWORD);
                 System.out.println("BD conectada correctamente");
             }
