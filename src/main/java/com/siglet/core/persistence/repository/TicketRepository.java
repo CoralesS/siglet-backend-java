@@ -79,7 +79,7 @@ public class TicketRepository {
 
                     // llena datos desde las columnas de Lote
                     Lote loteEncontrado = new Lote();
-                    loteEncontrado.setMaquina(maquinaEncontrada);
+                    loteEncontrado.setMaquinaEtiquetado(maquinaEncontrada);
                     loteEncontrado.setCodigo(rs.getInt("id_lote"));
                     loteEncontrado.setCantidad(rs.getInt("cantidad"));
 
@@ -130,7 +130,7 @@ public class TicketRepository {
 
                 // Llena datos desde las columnas de Lote
                 Lote loteEncontrado = new Lote();
-                loteEncontrado.setMaquina(maquinaEncontrada);
+                loteEncontrado.setMaquinaEtiquetado(maquinaEncontrada);
                 loteEncontrado.setCodigo(rs.getInt("id_lote"));
                 loteEncontrado.setCantidad(rs.getInt("cantidad"));
 

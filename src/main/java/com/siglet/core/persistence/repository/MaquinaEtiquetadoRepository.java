@@ -46,7 +46,7 @@ public class MaquinaEtiquetadoRepository {
                 "mq.estado, " +
                 "o.ope_dni, " +
                 "o.nombre, " +
-                "o.apellido, " +
+                "o.apellido " +
                 "FROM maquina_etiquetado mq " +
                 "INNER JOIN operario o ON o.ope_dni = mq.ope_dni " +
                 "WHERE mq.id_maquina = ?";
