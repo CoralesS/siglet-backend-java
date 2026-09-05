@@ -1,47 +1,41 @@
 package com.siglet.core.service;
-
-import com.siglet.core.persistence.domain.MaquinaEtiquetado;
 import com.siglet.core.persistence.domain.Operario;
-import com.siglet.core.persistence.enumeration.EstadoMaquina;
 import com.siglet.core.persistence.enumeration.EstadoOperario;
-import com.siglet.core.persistence.repository.MaquinaEtiquetadoRepository;
 import com.siglet.core.persistence.repository.OperarioRepository;
+import com.siglet.core.presentation.dto.OperarioDisponibleDTO;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
 
-public class AsignarOperarioService {
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-    MaquinaEtiquetadoRepository mEtiqRepository;
-    OperarioRepository oRepository;
+public class AsignarOperarioService{
 
-    public AsignarOperarioService(MaquinaEtiquetadoRepository mEtiqRepository, OperarioRepository oRepository) {
-        this.mEtiqRepository = mEtiqRepository;
-        this.oRepository = oRepository;
+    private OperarioRepository operarioRepository;
+
+    public AsignarOperarioService(OperarioRepository operarioRepository) {
+        this.operarioRepository = operarioRepository;
     }
 
-    public void ejecutarAsignarOperario(String idMaquina, String dNI) {
+    public List<OperarioDisponibleDTO> obtenerOperariosDisponibles() {
+        List<OperarioDisponibleDTO> listaDtos = new ArrayList<>();
 
-        // Consultar repositorio para obtener la entidad
-        MaquinaEtiquetado maquina = mEtiqRepository.buscarPorId(idMaquina);
-        Operario operario = oRepository.buscarPorDNI(dNI);
+        // Se asume que tu enumerador tiene el valor DISPONIBLE
+        List<Operario> operariosLibres = operarioRepository.buscarPorEstado(EstadoOperario.DISPONIBLE);
 
-        // Validar si las entidades existen
-        if (maquina == null || operario == null) {
-            throw new RuntimeException("Operario no encontrado");
+        for (Operario operario : operariosLibres) {
+            OperarioDisponibleDTO dto = new OperarioDisponibleDTO();
+
+            // Convierte el String de la BD al int que exige tu DTO
+            dto.setIdOperario(Integer.parseInt(operario.getdNI()));
+
+            // Une nombre y apellido para entregarlo listo a la vista
+            dto.setNombreOperario(operario.getNombre() + " " + operario.getApellido());
+
+            listaDtos.add(dto);
         }
 
-        // Validar si la maquina esta libre y operario disponible
-        if (!maquina.estaDisponible()) {
-            throw new  RuntimeException("Maquina no encontrada");
-        }
-
-        if (!operario.estaDisponible()) {
-            throw new  RuntimeException("Operario no encontrado");
-        }
-
-        // Cambio de estado de la maquina y operario
-        maquina.setOperario(operario);
-        operario.setEstadoOperario(EstadoOperario.TRABAJANDO);
-
-        // guardar cambios en la BD
-        mEtiqRepository.guardar(maquina);
+        return listaDtos;
     }
 }
