@@ -48,10 +48,6 @@ public class Lote {
         return duracion;
     }
 
-    public void setMaquina(MaquinaEtiquetado maquina) {
-        this.maquinaEtiquetado = maquina;
-    }
-
     public int getCodigo() {
         return codigo;
     }
@@ -60,44 +56,44 @@ public class Lote {
         this.codigo = codigo;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public MaquinaEtiquetado getMaquinaEtiquetado() {
+        return maquinaEtiquetado;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public LocalDateTime getInicioProceso() {
-        return inicioProceso;
-    }
-
-    public LocalDateTime getFinProceso() {
-        return finProceso;
+    public void setMaquinaEtiquetado(MaquinaEtiquetado maquinaEtiquetado) {
+        this.maquinaEtiquetado = maquinaEtiquetado;
     }
 
     public PrioridadLote getPrioridadLote() {
         return prioridadLote;
     }
 
-    public MaquinaEtiquetado getMaquinaEtiquetado() {
-        return maquinaEtiquetado;
+    public void setPrioridadLote(PrioridadLote prioridadLote) {
+        this.prioridadLote = prioridadLote;
     }
 
-    public void setInicioProceso(LocalDateTime inicioProceso) {
-        this.inicioProceso = inicioProceso;
+    public LocalDateTime getFinProceso() {
+        return finProceso;
     }
 
     public void setFinProceso(LocalDateTime finProceso) {
         this.finProceso = finProceso;
     }
 
-    public void setPrioridadLote(PrioridadLote prioridadLote) {
-        this.prioridadLote = prioridadLote;
+    public LocalDateTime getInicioProceso() {
+        return inicioProceso;
     }
 
-    public void setMaquinaEtiquetado(MaquinaEtiquetado maquinaEtiquetado) {
-        this.maquinaEtiquetado = maquinaEtiquetado;
+    public void setInicioProceso(LocalDateTime inicioProceso) {
+        this.inicioProceso = inicioProceso;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 }
 
